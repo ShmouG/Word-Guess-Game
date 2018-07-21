@@ -6,8 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
 </head>
+<script src="assets/javascript/game.js"></script> 
+
 <body>
-    
-    <script src="assets/javascript/game.js"></script> 
+    <div onload= "startUp"()>
+    <h1>Welcome to the word guess game!</h1>
+        <input id="letter" type="text">
+        <input type="button" value="letter" onClick="Letter()"/>
+        <p id="answer"></p>
+        <p id="counter"></p>
+        <p id="stat"></p>
+    </div>
 </body>
 </html>
