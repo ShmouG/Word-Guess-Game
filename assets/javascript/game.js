@@ -60,7 +60,6 @@ var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                          
                         // if they have the whole
                     } else {
-                        document.getElementById("message").innerHTML= "Guess again. The number is lower than "+guess;
                     //     guess = alert("Try Again...")
                     // break;
                           console.log('wrong guess')
