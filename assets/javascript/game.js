@@ -55,21 +55,28 @@ var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                         answerArray[j] = guess;
                         remainingLetters = remainingLetters - 1 ;
                         alert('MAATCHING!!!')
+                        document.getElementById("answer").innerHTML = answerArray.join(" ");
+                    
                         console.log(answerArray)
-                        console.log(remainingLetters)
-                         
-                        // if they have the whole
-                    } else {
+                        console.log(remainingLetters);
+                        
+                        // if they have the whol
+                    }
+                    else {
+                        // alert("Try again");
+                        // return;
                     //     guess = alert("Try Again...")
                     // break;
-                          console.log('wrong guess')
-                             
-                                                               //count wrong guesses     
-                }                         
+                    
+                   
+                    console.log('wrong guess')     
+                    }   
+                                         
                 }
-                document.getElementById("answer").innerHTML = answerArray.join(" ");
-                count++;
                 document.getElementById("counter").innerHTML = "Number of clicks " + count;
+
+                
+                    console.log("count") 
             }
             
         }
