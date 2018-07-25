@@ -17,7 +17,8 @@ for (var i = 0; i < randomWord.length; i++) {
 }
 var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var wrongGuess = [];
-
+var wins = 0;
+var loses = 0;
 var answerString = "";
 for (var i = 0; i < answerArray.length; i++) {
     answerString += answerArray[i];
@@ -38,16 +39,17 @@ document.onkeyup = function (event) {
     }
 
     if (answerArray.indexOf(guess) > -1) {
-        console.log('Letter already correctly guess');
+        console.log('Letter already correctly guessed');
         return;
     } else if (wrongGuess.indexOf(guess) > -1) {
-        console.log('aready guessed');
+        console.log('already guessed');
         return;
         //   alert('Wrong, try again!');
     } else if (randomWord.indexOf(guess) == -1) {
         wrongGuess.push(guess);
         guesses--;
         console.log('wrong guess');
+
     } else {
         console.log("in the else");
         for (var j = 0; j < randomWord.length; j++) {
@@ -70,6 +72,19 @@ document.onkeyup = function (event) {
     var answerString = "";
     for (var i = 0; i < answerArray.length; i++) {
         answerString += answerArray[i];
+    }
+
+    if (randomWord == answerString) {
+        console.log("You got it!");
+        wins++;
+        document.getElementById("wins").innerHTML = "Wins: " + wins;
+
+    }
+    if (guesses == 0) {
+        console.log('Game Over!')
+        loses++
+        document.getElementById("loses").innerHTML = "Loses: " + loses;
+
     }
 
     document.getElementById("counter").innerHTML = "Number of clicks " + guesses;
