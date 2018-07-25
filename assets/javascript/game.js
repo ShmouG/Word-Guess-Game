@@ -4,16 +4,82 @@
 //     document.getElementById("word-guess")
 // }
 
-alert("Press ok to continue")
-alert("You have 10 chances to prove yourself worthy")
+// alert("Press ok to continue")
+// alert("You have 10 chances to prove yourself worthy")
 
 //words used in the game
 var words = ['gevald', 'schmaltz', 'schmuck', 'meshugeh'];
-var randomWord = words[Math.floor(Math.random() * words.length)];
-var count = 10;
+var randomWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
+var guesses = 10;
 var answerArray = [];
+for (var i = 0; i < randomWord.length; i++) {
+    answerArray[i] = " _ ";
+}
 var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var wrongGuess = []
+var wrongGuess = [];
+
+var answerString = "";
+for (var i = 0; i < answerArray.length; i++) {
+    answerString += answerArray[i];
+}
+
+console.log(randomWord);
+
+document.getElementById("answer").innerHTML = answerString;
+
+
+var remainingLetters = randomWord.length;
+
+document.onkeyup = function (event) {
+    // console.log(event.key)
+    var guess = event.key.toUpperCase();
+    if (alphabet.indexOf(guess) == -1) {
+        return;
+    }
+
+    if (answerArray.indexOf(guess) > -1) {
+        console.log('Letter already correctly guess');
+        return;
+    } else if (wrongGuess.indexOf(guess) > -1) {
+        console.log('aready guessed');
+        return;
+        //   alert('Wrong, try again!');
+    } else if (randomWord.indexOf(guess) == -1) {
+        wrongGuess.push(guess);
+        guesses--;
+        console.log('wrong guess');
+    } else {
+        console.log("in the else");
+        for (var j = 0; j < randomWord.length; j++) {
+
+            if (randomWord[j] === guess) {
+                answerArray[j] = guess;
+                remainingLetters = remainingLetters - 1;
+                console.log('MAATCHING!!!')
+                //document.getElementById("answer").innerHTML = answerArray.join(" ");
+
+                console.log(answerArray);
+                console.log(remainingLetters);
+
+                // if they have the whole
+            }
+
+        }
+    }
+
+    var answerString = "";
+    for (var i = 0; i < answerArray.length; i++) {
+        answerString += answerArray[i];
+    }
+
+    document.getElementById("counter").innerHTML = "Number of clicks " + guesses;
+    console.log("answerstring", answerString);
+    document.getElementById("answer").innerHTML = answerString;
+
+    console.log("guesses")
+
+
+}
 
 // function startUp() {
 // for (var i = 0; i < randomWord.length; i++) {
@@ -36,64 +102,19 @@ var wrongGuess = []
 //           }
 //       }
 //     }
-//       count++;
-//       document.getElementById("counter").innerHTML = "Number of clicks " + count;
+//       guesses++;
+//       document.getElementById("counter").innerHTML = "Number of clicks " + guesses;
 //       document.getElementById("answer").innerHTML = answerArray.join("_");
 //   }
 
 //   }
 // }
 
-var remainingLetters = randomWord.length;
-
-document.onkeyup = function (event) {
-    // console.log(event.key)
-    var guess = event.key;
-    if (alphabet.indexOf(guess.toUpperCase()) !== -1) {
-        for (var j = 0; j < randomWord.length; j++) {
-            if (answerArray[j] === guess){
-                console.log('Letter already correctly guess');
-            }
-            else if (randomWord[j] === guess) {
-                answerArray[j] = guess;
-                remainingLetters = remainingLetters - 1;
-                alert('MAATCHING!!!')
-                document.getElementById("answer").innerHTML = answerArray.join(" ");
-
-                console.log(answerArray)
-                console.log(remainingLetters);
-
-                // if they have the whole
-            } else if (wrongGuess.indexOf(guess) > -1){
-                console.log('aready guessed')
-                //   alert('Wrong, try again!');
-            } else {
-                wrongGuess.push(guess);
-
-                count--;
-                // alert("Try again");
-                // event.stopPropagation();
-                // return;
-                //     guess = alert("Try Again...")
-                // break;
-
-                console.log('wrong guess')
-            }
-
-        }
-        document.getElementById("counter").innerHTML = "Number of clicks " + count;
-
-
-        console.log("count")
-    }
-
-}
-
 
 // alert("Good job! The answer was " + randomWord);
 
 
-// if (count > 10) {
+// if (guesses > 10) {
 //     document.getElementById("stat").innerHTML = "Oy Vey!!!"
 
 
